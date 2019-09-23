@@ -9,7 +9,9 @@ describe Property do
 
       listing = Property.create(user_id: user.id, address: '123 Mullholland Drive', description: 'Awesome shared bed',
       capacity: 4, pricepn: 100)
-      expect(listing.capacity).to eq(4)
+      p listing
+      expect(listing.capacity).to eq("4")
+
     end
   end
 end
