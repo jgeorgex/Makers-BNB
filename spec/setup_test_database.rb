@@ -2,5 +2,5 @@ require 'pg'
 
 def setup_test_database
   connection = PG.connect(dbname: 'makers_bnb_test')
-  connection.exec("TRUNCATE makersbnb_users;")
+  connection.exec("TRUNCATE makersbnb_users, makersbnb_properties;")
 end

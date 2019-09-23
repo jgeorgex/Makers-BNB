@@ -60,3 +60,4 @@ Test database
  2  Create the database using the psql command CREATE DATABASE makers_bnb_test;
  3  Connect to the database using the pqsl command \c makers_bnb_test;
  4  Run the query we have saved in the file db/migrations/01_create_user_table.sql
+ 5  Run the query we have saved in the file db/migrations/  02_create_properties_table.sql in order to set up the Makers BNB properties table.
