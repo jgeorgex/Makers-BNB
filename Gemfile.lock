@@ -3,6 +3,7 @@ GEM
   specs:
     ansi (1.5.0)
     ast (2.4.0)
+    bcrypt (3.1.13)
     diff-lcs (1.3)
     docile (1.3.2)
     jaro_winkler (1.5.3)
@@ -62,6 +63,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt
   pg
   rspec
   rubocop

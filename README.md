@@ -43,3 +43,18 @@ So that I can let my property I want to add my property to MakersBnB.
 As a user
 I want to be able to see my listing.
 ```
+
+## DATABASE SETUP INSTRUCTIONS:
+Production database
+
+ 1  Connect to psql
+ 2  Create the database using the psql command CREATE DATABASE makers_bnb;
+ 3  Connect to the database using the pqsl command \c makers_bnb;
+ 4  Run the query we have saved in the
+
+Test database
+
+ 1  Connect to psql
+ 2  Create the database using the psql command CREATE DATABASE makers_bnb_test;
+ 3  Connect to the database using the pqsl command \c makers_bnb_test;
+ 4  Run the query we have saved in the file db/migrations/01_create_user_table.sql
