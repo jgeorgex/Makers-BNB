@@ -35,11 +35,11 @@ Mockups for MakersBnB are available [here](https://github.com/makersacademy/cour
 
 ```
 As a user
-I want to be able to sign up to MakersBnB .
+I want to be able to sign up to MakersBnB.
 
 As a user
-So that I can let my property I want to add my property to MakersBnB
+So that I can let my property I want to add my property to MakersBnB.
 
 As a user
-```
 I want to be able to see my listing.
+```
