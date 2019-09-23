@@ -5,3 +5,10 @@
   <input type="text" name="description" placeholder="description" id="description"/><br>
   <input type="submit" name="submit" value="Add Property"/><br>
 </form>
+
+<div>
+  <ul>
+    <li><%= if($listing) then $listing[:name] end%></li>
+  </ul>
+
+</div>

@@ -23,6 +23,7 @@ class MakersBNB < Sinatra::Base
   end
 
   post '/user/listings/new' do
+    $listing = {name: params[:name], address: params[:address], capacity: params[:capacity]};
     #new listing = Listing.new(params...)
     redirect '/user/listings'
   end

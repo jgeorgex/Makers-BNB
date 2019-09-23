@@ -9,11 +9,13 @@ feature "managing listings" do
     click_button 'submit'
     click_on 'manage'
     expect(current_path).to eq('/user/listings')
+    expect(page).not_to have_content('test house')
     fill_in 'name', with: 'test house'
     fill_in 'address', with: '123, address road'
     fill_in 'capacity', with: '4'
     fill_in 'description', with: 'a standard plain house'
     click_on 'submit'
     expect(current_path).to eq('/user/listings')
+    expect(page).to have_content('test house')
   end
 end
