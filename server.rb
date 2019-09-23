@@ -16,8 +16,7 @@ class MakersBNB < Sinatra::Base
   end
 
   get '/user' do
-    p $firstname
-    "Welcome #{$firstname}"
+    erb :user_homepage
   end
 
   run! if __FILE__ == $PROGRAM_NAME
