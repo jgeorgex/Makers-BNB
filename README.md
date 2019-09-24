@@ -65,8 +65,7 @@ Test database
  ## RUNNING THE PROGRAM:
 
  1. Clone this repository.
- ``` $ git clone git@github.com:jgeorgex/Makers-BNB.git
- ```
+ ``` $ git clone git@github.com:jgeorgex/Makers-BNB.git ```
  2. run ``` $ bundle install ```
  3. run rack to astart the server using the command
  ``` $ rackup ```
