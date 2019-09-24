@@ -12,7 +12,7 @@ class MakersBNB < Sinatra::Base
   end
 
   post '/user/new' do
-    $firstname = params[:firstname]
+    p MbnbUser.create(email: params[:email],username: params[:username], firstname: params[:firstname], surname: params[:lastname], password: params[:password])
     redirect '/user'
   end
 
