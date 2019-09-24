@@ -12,3 +12,4 @@ feature "managing listings" do
     expect(page).to have_content('123, address road')
   end
 end
+
