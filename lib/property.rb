@@ -32,21 +32,16 @@ attr_reader :id, :user_id, :address, :description, :capacity, :pricepn
   end
 
   def self.user_all(id)
-    connection = PG.connect(dbname: 'makers_bnb_test')
-    r = connection.exec("SELECT * FROM makersbnb_properties WHERE user_id=#{id}")
-    r.map { |p| Property.new(id: p['id'], user_id: p['user_id'], address: p['address'],
-    description: p['description'], capacity: p['capacity'].to_i,
-    pricepn: p['pricepn'])}
-  end
+   connection = PG.connect(dbname: 'makers_bnb_test')
+   r = connection.exec("SELECT * FROM makersbnb_properties WHERE user_id=#{id}")
+   r.map { |p| Property.new(id: p['id'], user_id: p['user_id'], address: p['address'],
+     description: p['description'], capacity: p['capacity'].to_i, pricepn: p['pricepn'])}
+ end
 
-  def self.all
-    connection = PG.connect(dbname: 'makers_bnb_test')
-    r = connection.exec("SELECT * FROM makersbnb_properties")
-    r.map { |p| Property.new(id: p['id'], user_id: p['user_id'], address: p['address'],
-    description: p['description'], capacity: p['capacity'].to_i,
-    pricepn: p['pricepn'])}
-  end
-
-
-
+ def self.all
+   connection = PG.connect(dbname: 'makers_bnb_test')
+   r = connection.exec("SELECT * FROM makersbnb_properties")
+   r.map { |p| Property.new(id: p['id'], user_id: p['user_id'], address: p['address'],
+     description: p['description'], capacity: p['capacity'].to_i, pricepn: p['pricepn'])}
+ end
 end
