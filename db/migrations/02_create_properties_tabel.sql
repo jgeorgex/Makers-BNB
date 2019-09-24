@@ -1,1 +1,1 @@
-CREATE TABLE makersbnb_properties (id SERIAL PRIMARY KEY, address VARCHAR(280), description VARCHAR(500), capacity INTEGER, pricepn INTEGER, user_id INTEGER REFERENCES makersbnb_users (id));
+CREATE TABLE makersbnb_properties (id SERIAL PRIMARY KEY, name VARCHAR(80), address VARCHAR(280), description VARCHAR(500), capacity INTEGER, pricepn INTEGER, user_id INTEGER REFERENCES makersbnb_users (id));
