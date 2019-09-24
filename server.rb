@@ -2,6 +2,8 @@ require 'sinatra'
 require 'sinatra/base'
 require 'sinatra/json'
 require 'json'
+require_relative './lib/mbnb_user'
+require_relative './lib/property'
 
 class MakersBNB < Sinatra::Base
 
