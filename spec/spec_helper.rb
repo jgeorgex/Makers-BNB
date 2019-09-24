@@ -7,6 +7,7 @@ require 'rspec'
 require 'simplecov'
 require 'simplecov-console'
 require 'setup_test_database'
+require 'web_helpers'
 
 require File.join(File.dirname(__FILE__), '..', 'server.rb')
 
