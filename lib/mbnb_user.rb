@@ -36,14 +36,11 @@ class MbnbUser
   end
 
   def self.authenticate(email, password)
-
-    connection = PG.connect(dbname: 'makers_bnb_test')
-    r = connection.exec("SELECT * FROM makersbnb_users WHERE email='#{email}'")
+    r = DatabaseConnection.query("SELECT * FROM makersbnb_users WHERE email='#{email}'")
     result = r.map { |u| MbnbUser.new(id: u['id'], email: u['email'],
       username: u['username'], firstname: u['firstname'],
       surname: u['surname'], password: u['password'])}
       my_password = BCrypt::Password.new(result.first.password)
       my_password == password ? true : false
-
   end
 end
