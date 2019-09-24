@@ -34,4 +34,15 @@ class MbnbUser
     result.first
   end
 
+  def self.authenticate(email, password)
+    connection = PG.connect(dbname: 'makers_bnb_test')
+    r = connection.exec("SELECT * FROM makersbnb_users WHERE email='#{email}'")
+    result = r.map { |u| MbnbUser.new(id: u['id'], email: u['email'],
+      username: u['username'], firstname: u['firstname'],
+      surname: u['surname'], password: u['password'])}
+      return true if result.first.password == password
+  end
+
+
+
 end

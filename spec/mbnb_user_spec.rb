@@ -18,7 +18,17 @@ describe MbnbUser do
 
       expect(MbnbUser.find(user.id).username).to eq(user.username)
       expect(MbnbUser.find(user.id).email).to eq(user.email)
-      # expect(Property.find(listing.id)).to eq(listing)
     end
   end
+
+  describe '#authenticate' do
+    it 'returns a user given a correct email and password if it exists' do
+      user = MbnbUser.create(email: 'test@test.com', username: 'TestUserName',
+      firstname: 'John', surname: 'Bloggs', password: 'makers123')
+
+      authenticated_user = MbnbUser.authenticate('test@test.com', 'makers123')
+      expect(authenticated_user).to eq true
+    end
+  end
+
 end
