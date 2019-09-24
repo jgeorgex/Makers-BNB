@@ -1,4 +1,5 @@
 require 'pg'
+require_relative './database_connection'
 require 'bcrypt'
 
 class MbnbUser
@@ -17,9 +18,7 @@ class MbnbUser
 
   def self.create(email:, username:, firstname:, surname:, password:)
     encrypted_password = BCrypt::Password.create(password)
-
-    connection = PG.connect(dbname: 'makers_bnb_test')
-    r = connection.exec("INSERT INTO makersbnb_users (email, username, firstname,
+    r = DatabaseConnection.query("INSERT INTO makersbnb_users (email, username, firstname,
       surname, password) VALUES ('#{email}', '#{username}', '#{firstname}',
         '#{surname}', '#{encrypted_password}') RETURNING id, email, username, firstname,
         surname, password;")
@@ -29,8 +28,7 @@ class MbnbUser
   end
 
   def self.find(id)
-    connection = PG.connect(dbname: 'makers_bnb_test')
-    r = connection.exec("SELECT * FROM makersbnb_users WHERE id=#{id}")
+    r = DatabaseConnection.query("SELECT * FROM makersbnb_users WHERE id=#{id}")
     result = r.map { |u| MbnbUser.new(id: u['id'], email: u['email'],
       username: u['username'], firstname: u['firstname'],
       surname: u['surname'], password: u['password'])}

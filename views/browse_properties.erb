@@ -1,12 +1,38 @@
+<!DOCTYPE html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Browse our wonderful properties</title>
+    <style media="screen">
+      table, th, td { border: 1px solid black; }
+      table { width: 33%; }
+    </style>
+  </head>
+
+<body>
 <div class="navigation">
   <form action="/user/<%= @id %>" method="get">
     <button type="submit" name="homepage">Return to Homepage</button>
   </form>
 </div>
+<br>
+<br>
+<h1>Available properties:</h1>
 <div>
-  <ul>
-    <% @properties.each do |property| %>
-    <li> <%= property.address %> </li>
-    <% end %>
-  </ul>
+        <% @properties.each do |property| %>
+  <table>
+    <tr>
+      <td colspan="2">Address: <%= property.address %></td>
+    </tr>
+    <tr>
+      <td>Capacity: <%= property.capacity %></td> <td>Nightly Rate: <%= property.pricepn %></td>
+    </tr>
+    <tr>
+      <td colspan="2">Description: <%= property.description %></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+          <% end %>
 </div>
+</body>
