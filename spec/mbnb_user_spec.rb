@@ -23,11 +23,10 @@ describe MbnbUser do
 
   describe '#authenticate' do
     it 'returns a user given a correct email and password if it exists' do
-      user = MbnbUser.create(email: 'test@test.com', username: 'TestUserName',
+      MbnbUser.create(email: 'test@test.com', username: 'TestUserName',
       firstname: 'John', surname: 'Bloggs', password: 'makers123')
 
-      authenticated_user = MbnbUser.authenticate('test@test.com', 'makers123')
-      expect(authenticated_user).to eq true
+      expect(MbnbUser.authenticate('test@test.com', 'makers123')).to eq true
     end
   end
 

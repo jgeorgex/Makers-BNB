@@ -38,7 +38,6 @@ class MbnbUser
   end
 
   def self.authenticate(email, password)
-    # encrypted_password = BCrypt::Password.create(password)
 
     connection = PG.connect(dbname: 'makers_bnb_test')
     r = connection.exec("SELECT * FROM makersbnb_users WHERE email='#{email}'")
@@ -46,10 +45,7 @@ class MbnbUser
       username: u['username'], firstname: u['firstname'],
       surname: u['surname'], password: u['password'])}
       my_password = BCrypt::Password.new(result.first.password)
-      return true if my_password == password
+      my_password == password ? true : false
 
   end
-
-
-
 end
