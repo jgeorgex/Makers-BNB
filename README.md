@@ -61,3 +61,14 @@ Test database
  3  Connect to the database using the pqsl command \c makers_bnb_test;
  4  Run the query we have saved in the file db/migrations/01_create_user_table.sql
  5  Run the query we have saved in the file db/migrations/  02_create_properties_table.sql in order to set up the Makers BNB properties table.
+
+ ## RUNNING THE PROGRAM:
+
+ 1. Clone this repository.
+ ``` $ git clone git@github.com:jgeorgex/Makers-BNB.git
+ ```
+ 2. run ``` $ bundle install ```
+ 3. run rack to astart the server using the command
+ ``` $ rackup ```
+ 4. Open the Makers BnB hompage by navigating to the following page in your browser:
+ https://localhost:9292/
