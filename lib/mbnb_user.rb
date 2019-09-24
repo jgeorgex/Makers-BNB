@@ -23,5 +23,15 @@ class MbnbUser
         MbnbUser.new(id: r[0]['id'], email: r[0]['email'],
           username: r[0]['username'], firstname: r[0]['firstname'],
           surname: r[0]['surname'], password: r[0]['password'] )
-    end
   end
+
+  def self.find(id)
+    connection = PG.connect(dbname: 'makers_bnb_test')
+    r = connection.exec("SELECT * FROM makersbnb_users WHERE id=#{id}")
+    result = r.map { |u| MbnbUser.new(id: u['id'], email: u['email'],
+      username: u['username'], firstname: u['firstname'],
+      surname: u['surname'], password: u['password'])}
+    result.first
+  end
+
+end
