@@ -2,4 +2,8 @@
 
 <form action="/user/<%= @user.id %>/listings" method="get">
 <button name="manage" type="submit">Manage Listings</button>
-<form>
+</form>
+
+<form action="/user/<%= @user.id %>/browse" method="get">
+<button name="view" type="submit">Browse Available Properties</button>
+</form>

@@ -35,7 +35,7 @@ describe '#all' do
 
     listing = Property.create(user_id: user.id, address: '123 Mullholland Drive', description: 'Awesome shared bed',
     capacity: 4, pricepn: 100)
-    properties = Property.all(user.id)
+    properties = Property.all
     expect(properties.first.capacity).to eq(4)
 
   end
