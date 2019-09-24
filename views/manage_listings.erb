@@ -1,0 +1,14 @@
+<form action="/user/listings/new" method="post">
+  <input type="text" name="name" placeholder="name"/><br>
+  <input type="text" name="address" placeholder="address"/><br>
+  <input type="number" name="capacity" placeholder="capacity"><br>
+  <input type="text" name="description" placeholder="description" id="description"/><br>
+  <input type="submit" name="submit" value="Add Property"/><br>
+</form>
+
+<div>
+  <ul>
+    <li><%= if($listing) then $listing[:name] end%></li>
+  </ul>
+
+</div>
