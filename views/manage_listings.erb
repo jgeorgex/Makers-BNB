@@ -1,3 +1,13 @@
+<div class="navigation">
+  <form action="/user/<%= @user.id %>" method="get">
+    <button type="submit" name="homepage">Return to Homepage</button>
+  </form>
+  <form action="/user/<%= @user.id %>/browse" method="get">
+    <button type="submit" name="browse">Browse Available Properties</button>
+  </form>
+</div>
+
+
 <form action="/user/<%= @user.id %>/listings/new" method="post">
   <!-- <input type="text" name="name" placeholder="name"/><br> -->
   <input type="number" name="pricepn" placeholder="nightly rate"/><br>
@@ -13,5 +23,4 @@
     <li><%= property.address %></li>
     <% end %>
   </ul>
-
 </div>

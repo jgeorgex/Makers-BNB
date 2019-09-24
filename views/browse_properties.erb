@@ -1,8 +1,12 @@
+<div class="navigation">
+  <form action="/user/<%= @id %>" method="get">
+    <button type="submit" name="homepage">Return to Homepage</button>
+  </form>
+</div>
 <div>
   <ul>
     <% @properties.each do |property| %>
     <li> <%= property.address %> </li>
     <% end %>
   </ul>
-
 </div>

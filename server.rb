@@ -29,10 +29,11 @@ class MakersBNB < Sinatra::Base
 
   post '/user/:id/listings/new' do
     @property = Property.create(user_id: params[:id] , address: params[:address], capacity: params[:capacity], description: params[:description], pricepn: params[:pricepn])
-    redirect
+    redirect "/user/#{params[:id]}/listings"
   end
 
   get '/user/:id/browse' do
+    @id = params[:id]
     @properties = Property.all
     erb :browse_properties
   end
