@@ -1,5 +1,5 @@
-<h1>Welcome <%= $firstname %></h1>
+<h1>Welcome <%= @user.firstname %></h1>
 
-<form action="/user/listings" method="get">
+<form action="/user/<%= @user.id %>/listings" method="get">
 <button name="manage" type="submit">Manage Listings</button>
 <form>
