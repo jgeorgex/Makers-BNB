@@ -29,7 +29,7 @@ class MakersBNB < Sinatra::Base
   end
 
   post '/user/:id/listings/new' do
-    @property = Property.create(user_id: params[:id] , address: params[:address], capacity: params[:capacity], description: params[:description], pricepn: params[:pricepn])
+    @property = Property.create(user_id: params[:id], name: params[:name], address: params[:address], capacity: params[:capacity], description: params[:description], pricepn: params[:pricepn])
     redirect "/user/#{params[:id]}/listings"
   end
 
