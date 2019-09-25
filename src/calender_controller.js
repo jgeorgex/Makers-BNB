@@ -1,4 +1,4 @@
-@test_params
+
 
 var events = [
   {'Date': new Date(2019, 8, 7), 'Title': 'Doctor appointment at 3:25pm.'},
