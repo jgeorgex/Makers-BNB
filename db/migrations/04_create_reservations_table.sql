@@ -1,0 +1,1 @@
+CREATE TABLE makersbnb_reservations (id SERIAL PRIMARY KEY, user_id INTEGER REFERENCES makersbnb_users (id), property_id INTEGER REFERENCES makersbnb_properties (id), dates_id INTEGER REFERENCES makersbnb_dates (id));
