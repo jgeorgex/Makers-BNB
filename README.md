@@ -62,7 +62,17 @@ As a user
 So that I can let my property I want to add my property to MakersBnB.
 
 As a user
-I want to be able to see my listing.
+So that i can manage my own listings
+I want to be able to see my listings.
+
+As a user
+so that I can browse potential properties
+I want to be able to see all listings.
+
+As a user
+so that I can book a holiday
+I want to see the owner's details of a location.
+
 ```
 ## RUNNING THE PROGRAM:
 
