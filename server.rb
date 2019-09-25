@@ -4,6 +4,7 @@ require 'sinatra/json'
 require 'json'
 require_relative './lib/mbnb_user'
 require_relative './lib/property'
+require_relative './lib/reservation'
 require './lib/database_connection_setup'
 
 class MakersBNB < Sinatra::Base
@@ -38,6 +39,18 @@ class MakersBNB < Sinatra::Base
     @properties = Property.all
     erb :browse_properties
   end
+
+  get '/user/:id/property/:p_id' do
+    @property_id = params[:p_id]
+    @user_id = params[:id]
+    @res = Reservation.all(property_id: @property_id)
+    @res.map! { |r| r.res_date}
+    p @res
+    erb :property_page
+  end
+
+
+
 
   run! if __FILE__ == $PROGRAM_NAME
 end

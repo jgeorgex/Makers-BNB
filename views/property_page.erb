@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Browse our wonderful properties</title>
+    <style media="screen">
+      table, th, td { border: 1px solid black; }
+      table { width: 33%; }
+    </style>
+
+  </head>
+
+<body>
+  <!-- <script> var property_id = <%=@property_id.inspect%>;
+console.log(property_id);
+  </script> -->
+
+<div class="navigation">
+  <form action="/user/<%= @id %>" method="get">
+    <button type="submit" name="homepage">Return to Homepage</button>
+  </form>
+
+</div>
+
+</body>
