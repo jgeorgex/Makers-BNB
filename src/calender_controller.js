@@ -6,9 +6,13 @@ var events = [
   {'Date': new Date(2019, 8, 27), 'Title': '25 year anniversary', 'Link': 'https://www.google.com.au/#q=anniversary+gifts'},
 ];
 
-$("#caleandar").click(function(){
-alert("You have selected X ")
-})
+// $("#caleandar").click(function(){
+// alert("You have selected X ")
+// })
+
+$(document).on("click","#caleandar",function(event){
+  alert(event.target.id);
+});
 
 var settings = {
   DateTimeShow: true,
