@@ -53,7 +53,7 @@ function createCalendar(calendar, element, adjuster){
       typeof calendar.Options[key] != 'function' && typeof calendar.Options[key] != 'object' && calendar.Options[key]?element.className += " " + key + "-" + calendar.Options[key]:0;
     }
   }
-  var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
   function AddSidebar(){
     var sidebar = document.createElement('div');
