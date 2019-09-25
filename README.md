@@ -100,6 +100,8 @@ Setup the main database
  4.  Run the query saved in the file db/migrations/01_create_user_table.sql
  in order to set up the Makers BNB user table.
  5.  Run the query saved in the file db/migrations/  02_create_properties_table.sql in order to set up the Makers BNB properties table.
+ 6. Run the query saved in the file db/migrations/  03_create_date_table.sql in order to set up the Makers BNB dates table.
+ 7. Run the query saved in the file db/migrations/  04_create_reservations_table.sql in order to set up the Makers BNB reservations table.
 
 Setup the test database:
 
