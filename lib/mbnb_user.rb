@@ -35,6 +35,14 @@ class MbnbUser
     result.first
   end
 
+  def self.find_by_email(email)
+    r = DatabaseConnection.query("SELECT * FROM makersbnb_users WHERE email='#{email}'")
+    result = r.map { |u| MbnbUser.new(id: u['id'], email: u['email'],
+      username: u['username'], firstname: u['firstname'],
+      surname: u['surname'], password: u['password'])}
+    result.first
+  end
+
   def self.authenticate(email, password)
     r = DatabaseConnection.query("SELECT * FROM makersbnb_users WHERE email='#{email}'")
     result = r.map { |u| MbnbUser.new(id: u['id'], email: u['email'],

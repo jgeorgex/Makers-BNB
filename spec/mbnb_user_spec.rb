@@ -30,4 +30,13 @@ describe MbnbUser do
     end
   end
 
+  describe '#find_by_email' do
+    it 'finds the user on the by email database' do
+
+      user = MbnbUser.create(email: 'test@test.com', username: 'TestUserName',
+      firstname: 'John', surname: 'Bloggs', password: 'makers123')
+      expect(MbnbUser.find_by_email(user.email).username).to eq(user.username)
+    end
+  end
+
 end
