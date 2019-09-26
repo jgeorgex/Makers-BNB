@@ -22,6 +22,9 @@
         <% @properties.each do |property| %>
   <table>
     <tr>
+      <th colspan="2"><a href="/user/<%= @id%>/booking/<%= property.id %>">Name: <%= property.name %></a></th>
+    </tr>
+    <tr>
       <td colspan="2">Address: <%= property.address %></td>
     </tr>
     <tr>

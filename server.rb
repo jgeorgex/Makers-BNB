@@ -9,7 +9,11 @@ require './lib/database_connection_setup'
 class MakersBNB < Sinatra::Base
 
   get '/' do
-    erb :sign_up
+    john = erb :sign_up
+  end
+
+  get '/reservations_api/:p_id' do
+    Reservations.find(params[:p_id])
   end
 
   post '/user/new' do
@@ -39,9 +43,10 @@ class MakersBNB < Sinatra::Base
     erb :browse_properties
   end
 
-  get '/booking' do
-    @test_params = "{'Date': new Date(2019, 8, 27)}"
-    
+  get '/user/:id/booking/:p_id' do
+    @p_id = params[:p_id]
+    @user_id = params[:id]
+    File.read('./views/book_property.html')
   end
 
   run! if __FILE__ == $PROGRAM_NAME
