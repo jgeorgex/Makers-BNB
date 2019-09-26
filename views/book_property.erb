@@ -51,6 +51,14 @@
       setTimeout(initiateCalander, 150)
   </script>
 
+  <div>
+    <form action="/user/<%=@user_id%>/request/<%=@property_id%>" method="post">
+      <input type="number" name="year" placeholder="YYYY"/>
+      <input type="number" name="month" placeholder="MM"/>
+      <input type="number" name="day" placeholder="DD"/><br>
+      <button type="submit" name="request_booking">Request Booking </button>
+      </form>
+    </div>
   <!-- <script type="text/javascript" src="/src/calender_controller.js"></script> -->
   </body>
 </html>

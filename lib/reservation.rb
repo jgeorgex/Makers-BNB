@@ -22,7 +22,7 @@ class Reservation
   end
 
   def self.all(property_id:)
-    r = DatabaseConnection.query("SELECT res_date FROM makersbnb_reservations WHERE property_id=#{property_id};")
+    r = DatabaseConnection.query("SELECT res_date FROM makersbnb_reservations WHERE property_id=#{property_id} AND confirmed=TRUE;")
     r.map { |res| res['res_date']}
   end
 

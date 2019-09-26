@@ -54,5 +54,9 @@ class MakersBNB < Sinatra::Base
     erb :book_property
   end
 
+  post '/user/:id/request/:p_id' do
+  
+  end
+
   run! if __FILE__ == $PROGRAM_NAME
 end
