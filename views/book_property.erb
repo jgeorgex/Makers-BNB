@@ -12,7 +12,16 @@
 
       </div>
       <script> console.log(<%=@user_id.inspect%>)
-      console.log("hi")</script>
+      function check() {
+          console.log(reservations[0])
+      }
+      console.log("hi")
+      var reservations;
+      $.get("/reservations_api/2", function(data){reservations = data})
+
+    setTimeout(check, 2000)
+
+    </script>
     <script type="text/javascript" src="/src/caleandar.js"></script>
     <script type="text/javascript" src="/src/calender_controller.js"></script>
   </body>

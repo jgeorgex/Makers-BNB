@@ -5,23 +5,17 @@ require 'json'
 require_relative './lib/mbnb_user'
 require_relative './lib/property'
 require './lib/database_connection_setup'
+require './lib/reservation'
 
 class MakersBNB < Sinatra::Base
-
-  get '/caleandar/theme1.css' do
-    File.read("./css/caleandar/theme1.css")
-  end
-
-  get '/caleandar/demo.css' do
-    File.read("./css/caleandar/demo.css")
-  end
 
   get '/' do
     john = erb :sign_up
   end
 
   get '/reservations_api/:p_id' do
-    Reservations.find(params[:p_id])
+    r = Reservation.all(property_id: params[:p_id])
+    json(r)
   end
 
   post '/user/new' do
