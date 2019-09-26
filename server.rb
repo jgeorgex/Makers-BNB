@@ -8,6 +8,14 @@ require './lib/database_connection_setup'
 
 class MakersBNB < Sinatra::Base
 
+  get '/caleandar/theme1.css' do
+    File.read("./css/caleandar/theme1.css")
+  end
+
+  get '/caleandar/demo.css' do
+    File.read("./css/caleandar/demo.css")
+  end
+
   get '/' do
     john = erb :sign_up
   end
@@ -46,7 +54,7 @@ class MakersBNB < Sinatra::Base
   get '/user/:id/booking/:p_id' do
     @p_id = params[:p_id]
     @user_id = params[:id]
-    File.read('./views/book_property.html')
+    erb :book_property
   end
 
   run! if __FILE__ == $PROGRAM_NAME
