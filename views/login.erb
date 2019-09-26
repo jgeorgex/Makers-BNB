@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+</head>
+<body>
+<h2>Apologies we forgot who you are. Do you want to input your details again?</h2>
+<!-- <form action='/user/new' method='post'> -->
+<form action="/authenticate" method="post">
+  <table>
+    <tr>
+      <th>Email</th>
+      <td><input type="email" name="email" placeholder="email"/></td>
+    </tr>
+    <tr>
+      <th>Password</th>
+      <td><input type="password" name="password" placeholder="password"/></td>
+    </tr>
+    <tr>
+      <th colspan="2"><input type="submit" name="submit" value="login"/><th>
+    </tr>
+  </table>
+</form>
+</body>

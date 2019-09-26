@@ -12,6 +12,19 @@ class MakersBNB < Sinatra::Base
     erb :sign_up
   end
 
+  get '/login' do
+    erb :login
+  end
+
+  post '/authenticate' do
+ if MbnbUser.authenticate(params[:email], params[:password])
+   @user = MbnbUser.find_by_email(params[:email])
+    redirect "/user/#{@user.id}"
+  else
+    redirect "/"
+  end
+  end
+
   post '/user/new' do
     @user = MbnbUser.create(email: params[:email],username: params[:username], firstname: params[:firstname], surname: params[:lastname], password: params[:password])
     redirect "/user/#{@user.id}"
