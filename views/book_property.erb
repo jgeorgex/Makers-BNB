@@ -11,18 +11,46 @@
       <div id="caleandar">
 
       </div>
-      <script> console.log(<%=@user_id.inspect%>)
-      function check() {
-          console.log(reservations[0])
-      }
-      console.log("hi")
-      var reservations;
-      $.get("/reservations_api/2", function(data){reservations = data})
 
-    setTimeout(check, 2000)
 
-    </script>
     <script type="text/javascript" src="/src/caleandar.js"></script>
-    <script type="text/javascript" src="/src/calender_controller.js"></script>
+    <script>
+      var p_id = <%= @p_id.inspect %>;
+      var reservations;
+      $.get(`/reservations_api/${p_id}`, function(data){reservations = data
+      console.log("hi")})
+      function initiateCalander(){
+        var events = [
+
+        ];
+        reservations.forEach(function(date){
+          var res = {'Date': new Date(date)};
+          events.push(res)
+          console.log(events)
+          console.log(1)
+        })
+
+        console.log(events)
+        // $("#caleandar").click(function(){
+        // alert("You have selected X ")
+        // })
+
+        $(document).on("click","#caleandar",function(event){
+          alert(event.target.id);
+        });
+
+        var settings = {
+          DateTimeShow: true,
+          EventTargetWholeDay: true,
+
+        };
+        var element = document.getElementById('caleandar');
+        console.log("calendar")
+        caleandar(element, events, settings);
+      };
+      setTimeout(initiateCalander, 150)
+  </script>
+
+  <!-- <script type="text/javascript" src="/src/calender_controller.js"></script> -->
   </body>
 </html>

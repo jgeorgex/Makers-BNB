@@ -15,7 +15,10 @@ class MakersBNB < Sinatra::Base
 
   get '/reservations_api/:p_id' do
     r = Reservation.all(property_id: params[:p_id])
-    json(r)
+    y = []
+    r.each { |date| y.push(date.gsub('-', ', '))}
+    p y
+    json(y)
   end
 
   post '/user/new' do
