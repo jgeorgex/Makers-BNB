@@ -1,5 +1,4 @@
 
-
 class Property
 
 attr_reader :id, :user_id, :name, :address, :description, :capacity, :pricepn
@@ -15,7 +14,7 @@ attr_reader :id, :user_id, :name, :address, :description, :capacity, :pricepn
   end
 
 
-  def self.create( user_id:, address:, name:, description:, capacity:, pricepn: )  
+  def self.create( user_id:, address:, name:, description:, capacity:, pricepn: )
     r = DatabaseConnection.query("INSERT INTO makersbnb_properties (user_id, address, name,
       description, capacity, pricepn) VALUES ('#{user_id}', '#{address}', '#{name}',
       '#{description}', '#{capacity}', '#{pricepn}') RETURNING id, user_id,

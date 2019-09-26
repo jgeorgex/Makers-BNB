@@ -5,11 +5,20 @@ require 'json'
 require_relative './lib/mbnb_user'
 require_relative './lib/property'
 require './lib/database_connection_setup'
+require './lib/reservation'
 
 class MakersBNB < Sinatra::Base
 
   get '/' do
-    erb :sign_up
+    john = erb :sign_up
+  end
+
+  get '/reservations_api/:p_id' do
+    r = Reservation.all(property_id: params[:p_id])
+    y = []
+    r.each { |date| y.push(date.gsub('-', ', '))}
+    p y
+    json(y)
   end
 
   post '/user/new' do
@@ -37,6 +46,12 @@ class MakersBNB < Sinatra::Base
     @id = params[:id]
     @properties = Property.all
     erb :browse_properties
+  end
+
+  get '/user/:id/booking/:p_id' do
+    @p_id = params[:p_id]
+    @user_id = params[:id]
+    erb :book_property
   end
 
   run! if __FILE__ == $PROGRAM_NAME
