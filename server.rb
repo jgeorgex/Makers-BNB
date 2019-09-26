@@ -39,5 +39,10 @@ class MakersBNB < Sinatra::Base
     erb :browse_properties
   end
 
+  get '/booking' do
+    @test_params = "{'Date': new Date(2019, 8, 27)}"
+    
+  end
+
   run! if __FILE__ == $PROGRAM_NAME
 end
