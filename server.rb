@@ -50,8 +50,10 @@ class MakersBNB < Sinatra::Base
     @user = MbnbUser.find(params[:id])
     @properties = Property.user_all(params[:id])
     @reservations = []
+    @property_ids = []
     @properties.each { |p| res = Reservation.requests(property_id: p.id)
-      @reservations << res}
+      @reservations << res
+      @property_ids << p.id }
     erb :manage_listings
   end
 
