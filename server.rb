@@ -17,7 +17,6 @@ class MakersBNB < Sinatra::Base
     r = Reservation.all(property_id: params[:p_id])
     y = []
     r.each { |date| y.push(date.gsub('-', ', '))}
-    p y
     json(y)
   end
 
@@ -68,7 +67,13 @@ class MakersBNB < Sinatra::Base
   end
 
   post '/user/:id/request/:p_id' do
-  
+    @date = "#{params[:year]}-#{params[:month]}-#{params[:day]}"
+    Reservation.create(property_id: params[:p_id], user_id: params[:id], res_date: @date)
+    redirect '/confirmation'
+  end
+
+  get '/confirmation' do
+    "your booking request has been sent"
   end
 
   run! if __FILE__ == $PROGRAM_NAME
