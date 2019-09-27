@@ -57,6 +57,8 @@ class MakersBNB < Sinatra::Base
 
   post '/user/:id/listings/new' do
     @property = Property.create(user_id: params[:id], name: params[:name], address: params[:address], capacity: params[:capacity], description: params[:description], pricepn: params[:pricepn])
+    creator_email = MbnbUser.find(params[:id]).email
+    SendMail.created_space(creator_email)
     redirect "/user/#{params[:id]}/listings"
   end
 
@@ -75,6 +77,10 @@ class MakersBNB < Sinatra::Base
   post '/user/:id/request/:p_id' do
     @date = "#{params[:year]}-#{params[:month]}-#{params[:day]}"
     Reservation.create(property_id: params[:p_id], user_id: params[:id], res_date: @date)
+    prop = Property.find(params[:p_id])
+    userid = prop.user_id
+    email = MbnbUser.find(userid).email
+    SendMail.mail_request(email)
     redirect '/confirmation'
   end
 
@@ -84,11 +90,15 @@ class MakersBNB < Sinatra::Base
 
   post '/user/:u_id/res/:r_id/deny' do
     Reservation.deny(params[:r_id])
+    recepient =Reservation.find_guest(params[:r_id])
+    SendMail.mail_deny(recepient.guest.email)
     redirect "/user/#{params[:u_id]}/listings"
   end
 
   post '/user/:u_id/res/:r_id/confirm' do
     Reservation.confirm(params[:r_id])
+    recepient =Reservation.find_guest(params[:r_id])
+    SendMail.mail_confirm(recepient.guest.email)
     redirect "/user/#{params[:u_id]}/listings"
   end
 
