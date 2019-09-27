@@ -3,7 +3,7 @@ require 'mail'
 class SendMail
   options = { :address => "smtp.gmail.com",
     :port => 465,
-    :domain => 'Julians-MacBook-Pro.local', #'add inside a string your hostname. Find your hostname by typing hostname in the terminal',
+    :domain => 'Olivers-MacBook-Pro.local', #'add inside a string your hostname. Find your hostname by typing hostname in the terminal',
     :user_name => 'gtomollie',
     :password => 'makersbnb!',
     :authentication => :login,

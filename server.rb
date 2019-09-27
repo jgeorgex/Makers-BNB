@@ -10,9 +10,10 @@ require './lib/database_connection_setup'
 require './lib/reservation'
 
 class MakersBNB < Sinatra::Base
+  enable :sessions
 
   get '/' do
-    john = erb :sign_up
+    erb :sign_up
   end
 
   get '/reservations_api/:p_id' do
@@ -37,21 +38,24 @@ class MakersBNB < Sinatra::Base
   end
 
   post '/authenticate' do
- if MbnbUser.authenticate(params[:email], params[:password])
-   @user = MbnbUser.find_by_email(params[:email])
-    redirect "/user/#{@user.id}"
-  else
-    redirect "/"
-  end
+   if MbnbUser.authenticate(params[:email], params[:password])
+     @user = MbnbUser.find_by_email(params[:email])
+     session[:id] = @user.id
+      redirect "/user/#{@user.id}"
+    else
+      redirect "/"
+    end
   end
 
   post '/user/new' do
     @user = MbnbUser.create(email: params[:email],username: params[:username], firstname: params[:firstname], surname: params[:lastname], password: params[:password])
     SendMail.sign_up_mail(params[:email])
+    session[:id] = @user.id
     redirect "/user/#{@user.id}"
   end
 
   get '/user/:id' do
+    redirect '/' unless session[:id] == params[:id] 
     @user = MbnbUser.find(params[:id])
     erb :user_homepage
   end
@@ -101,9 +105,9 @@ class MakersBNB < Sinatra::Base
   end
 
   post '/user/:u_id/res/:r_id/deny' do
-    Reservation.deny(params[:r_id])
     recepient =Reservation.find_guest(params[:r_id])
     SendMail.mail_deny(recepient.guest.email)
+    Reservation.deny(params[:r_id])
     redirect "/user/#{params[:u_id]}/listings"
   end
 
