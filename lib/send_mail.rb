@@ -33,4 +33,40 @@ class SendMail
     end
   end
 
+  def self.created_space(recipient)
+    Mail.deliver do
+      to recipient
+      from 'gtomollie@gmail.com'
+      subject 'You created a space on MakersBnB'
+      body "This is a completely pointless email!"
+    end
+  end
+
+
+  def self.mail_request(recipient)
+    Mail.deliver do
+      to recipient
+      from 'gtomollie@gmail.com'
+      subject 'Someone is interested in your property'
+      body "Login to accept or deny their request"
+      end
+    end
+
+def self.mail_confirm(recipient)
+  Mail.deliver do
+    to recipient
+    from 'gtomollie@gmail.com'
+    subject 'Get excited about your next getaway!'
+    body "Consider yourself confirmed. STRICTLY NO REFUNDS"
+    end
+  end
+
+  def self.mail_deny(recipient)
+    Mail.deliver do
+      to recipient
+      from 'gtomollie@gmail.com'
+      subject 'Try another property'
+      body "Sorry to be a wet blanket but we don't like the cut of your jib"
+      end
+    end
 end

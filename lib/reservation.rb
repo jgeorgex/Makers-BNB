@@ -23,6 +23,11 @@ class Reservation
     Reservation.new(id: r['id'].to_i, property_id: r['property_id'].to_i, user_id: r['user_id'].to_i, res_date: r['res_date'])
   end
 
+  def self.find_guest(id)
+    r = DatabaseConnection.query("SELECT * FROM makersbnb_reservations WHERE id=#{id};").first
+    Reservation.new(id: r['id'].to_i, property_id: r['property_id'].to_i, user_id: r['user_id'].to_i, res_date: r['res_date'])
+  end
+
   def self.all(property_id:)
     r = DatabaseConnection.query("SELECT res_date FROM makersbnb_reservations WHERE property_id=#{property_id} AND confirmed=TRUE;")
     r.map { |res| res['res_date']}
