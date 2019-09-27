@@ -46,6 +46,9 @@ class MakersBNB < Sinatra::Base
   get '/user/:id/listings' do
     @user = MbnbUser.find(params[:id])
     @properties = Property.user_all(params[:id])
+    @reservations = []
+    @properties.each { |p| res = Reservation.requests(property_id: p.id)
+      @reservations << res}
     erb :manage_listings
   end
 
@@ -57,10 +60,6 @@ class MakersBNB < Sinatra::Base
   get '/user/:id/browse' do
     @id = params[:id]
     @properties = Property.all
-    @reservations = []
-    @properties.each { |p| res = Reservation.requests(property_id: p.id)
-      @reservations << res}
-    p @reservations
     erb :browse_properties
   end
 
@@ -80,9 +79,14 @@ class MakersBNB < Sinatra::Base
     "your booking request has been sent"
   end
 
-  get '/res/requests' do
-    p Reservation.requests(property_id: 1)
-    "testing"
+  post '/user/:u_id/res/:r_id/deny' do
+    Reservation.deny(params[:r_id])
+    redirect "/user/#{params[:u_id]}/listings"
+  end
+
+  post '/user/:u_id/res/:r_id/confirm' do
+    Reservation.confirm(params[:r_id])
+    redirect "/user/#{params[:u_id]}/listings"
   end
 
   run! if __FILE__ == $PROGRAM_NAME

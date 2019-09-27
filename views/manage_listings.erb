@@ -19,7 +19,8 @@
     <button type="submit" name="browse">Browse Available Properties</button>
   </form>
 </div>
-
+<br>
+<br>
 
 <form action="/user/<%= @user.id %>/listings/new" method="post">
   <input type="text" name="name" placeholder="name"/><br>
@@ -29,6 +30,41 @@
   <input type="text" name="description" placeholder="description" id="description"/><br>
   <input type="submit" name="submit" value="Add Property"/><br>
 </form>
+
+<div id="requests">
+<h1>Booking Requests</h1>
+  <% @reservations.each do |reservation_arr| %>
+    <% reservation_arr.each do |reservation| %>
+    <table>
+      <tr>
+        <th colspan="2">Property: <%= reservation.property.name %></th>
+      </tr>
+      <tr>
+        <td>Guest Name: <%= reservation.guest.firstname %> <%= reservation.guest.surname %></td>
+        <td>Contact Info: <%= reservation.guest.email %></td>
+      </tr>
+      <tr>
+        <td>Date: <%= reservation.res_date %></td>
+        <td>Nightly Rate: £<%= reservation.property.pricepn %></td>
+      </tr>
+      <tr>
+        <td>
+          <form action="/user/<%=@user.id%>/res/<%= reservation.id %>/confirm" method="post">
+            <button type="submit" name="confirm">CONFIRM</button>
+          </form>
+        </td>
+        <td>
+          <form action="/user/<%=@user.id%>/res/<%= reservation.id %>/deny" method="post">
+            <button type="submit" name="confirm">DENY</button>
+          </form>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <% end %>
+  <% end %>
+</div>
 
 <h1><%= @user.firstname%>'s properties:</h1>
 <div>
@@ -41,7 +77,7 @@
       <td colspan="2">Address: <%= property.address %></td>
     </tr>
     <tr>
-      <td>Capacity: <%= property.capacity %></td> <td>Nightly Rate: <%= property.pricepn %></td>
+      <td>Capacity: <%= property.capacity %></td> <td>Nightly Rate: £<%= property.pricepn %></td>
     </tr>
     <tr>
       <td colspan="2">Description: <%= property.description %></td>

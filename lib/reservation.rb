@@ -33,4 +33,12 @@ class Reservation
     r.map { |res| Reservation.new(id: res['id'].to_i, property_id: res['property_id'].to_i, user_id: res['user_id'].to_i, res_date: res['res_date'])}
   end
 
+  def self.confirm(res_id)
+    DatabaseConnection.query("UPDATE makersbnb_reservations SET confirmed = 'TRUE' WHERE id=#{res_id};")
+  end
+
+  def self.deny(res_id)
+    DatabaseConnection.query("DELETE FROM makersbnb_reservations WHERE id=#{res_id};")
+  end
+
 end

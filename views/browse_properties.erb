@@ -17,23 +17,7 @@
 </div>
 <br>
 <br>
-<div id="requests">
-<h1>Booking Requests</h1>
-  <% @reservations.each do |reservation_arr| %>
-    <% reservation_arr.each do |reservation| %>
-    <table>
-      <tr>
-        <th>Requested Date: <%= reservation.res_date %></th>
-      </tr>
-      <tr>
-        <td>Guest Name: <%= reservation.guest.firstname + reservation.guest.surname %> <%= reservation.guest.surname %></td>
-      </tr>
-    </table>
-    <br>
-    <br>
-    <% end %>
-  <% end %>
-</div>
+
 <h1>Available properties:</h1>
 <div>
         <% @properties.each do |property| %>
