@@ -22,6 +22,16 @@ class MakersBNB < Sinatra::Base
     json(y)
   end
 
+  get '/user/:id/reservations_api' do
+    @properties = Property.user_all(params[:id])
+    @reservations = []
+    @properties.each { |p| res = Reservation.all(property_id: p.id)
+      y = []
+      res.each { |date| y.push(date.gsub('-', ', '))}
+      @reservations << y }
+    json(@reservations)
+  end
+
   get '/login' do
     erb :login
   end
@@ -50,8 +60,10 @@ class MakersBNB < Sinatra::Base
     @user = MbnbUser.find(params[:id])
     @properties = Property.user_all(params[:id])
     @reservations = []
+    @property_ids = []
     @properties.each { |p| res = Reservation.requests(property_id: p.id)
-      @reservations << res}
+      @reservations << res
+      @property_ids << p.id }
     erb :manage_listings
   end
 
