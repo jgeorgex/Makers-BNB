@@ -20,11 +20,11 @@ describe Reservation do
 
   describe ".all" do
     it "returns all reservations for a given property" do
-      Reservation.create(property_id: 4, user_id: 1, res_date: "#{Date.parse('25th Sep 2019')}")
-      Reservation.create(property_id: 4, user_id: 5, res_date: "#{Date.parse('20th Sep 2019')}")
-      Reservation.create(property_id: 4, user_id: 5, res_date: "#{Date.parse('22nd Sep 2019')}")
+      Reservation.create(property_id: 1, user_id: 1, res_date: "#{Date.parse('25th Sep 2019')}")
+      Reservation.create(property_id: 1, user_id: 1, res_date: "#{Date.parse('20th Sep 2019')}")
+      Reservation.create(property_id: 1, user_id: 1, res_date: "#{Date.parse('22nd Sep 2019')}")
 
-      res = Reservation.all(property_id: 4)
+      res = Reservation.all(property_id: 1)
       expect(res.length).to eq(3)
     end
   end

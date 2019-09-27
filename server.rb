@@ -2,8 +2,10 @@ require 'sinatra'
 require 'sinatra/base'
 require 'sinatra/json'
 require 'json'
+# require 'mail'
 require_relative './lib/mbnb_user'
 require_relative './lib/property'
+# require_relative './lib/send_mail'
 require './lib/database_connection_setup'
 require './lib/reservation'
 
@@ -68,7 +70,7 @@ class MakersBNB < Sinatra::Base
   end
 
   post '/user/:id/request/:p_id' do
-  
+
   end
 
   run! if __FILE__ == $PROGRAM_NAME
