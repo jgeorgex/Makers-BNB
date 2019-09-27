@@ -93,7 +93,7 @@ class MakersBNB < Sinatra::Base
     userid = prop.user_id
     email = MbnbUser.find(userid).email
     SendMail.mail_request(email)
-    redirect '/confirmation'
+    redirect "/user/#{params[:id]}"
   end
 
   get '/confirmation' do
