@@ -87,7 +87,7 @@
       <td colspan="2">Description: <%= property.description %></td>
     </tr>
   </table>
-  <div id="caleandar_<%= property.id%>">
+  <div id="caleandar_<%= property.id %>">
 
   </div>
   <br>
@@ -100,43 +100,49 @@
   var property_ids = <%= @property_ids.inspect %>;
   console.log(property_ids);
 
-  property_ids.forEach(function(p_id){
+    var reservations_arr;
 
-    var reservations;
-    $.get(`/reservations_api/${p_id}`, function(data){reservations = data
+    $.get(`/user/<%= @user.id %>/reservations_api`, function(data){reservations_arr = data
     console.log(1)})
 
-    function initiateCalander(){
-      var events = [
+    function uploadCalendars(){
+      console.log("uploading calendars")
+      var i = 0;
+    reservations_arr.forEach(function(reservations){
+      console.log(reservations)
+      function initiateCalander(){
+        var events = [
 
-      ];
-      console.log(2)
-      reservations.forEach(function(date){
-        console.log(3)
-        var res = {'Date': new Date(date)};
-        events.push(res)
-      })
+        ];
+        reservations.forEach(function(date){
+          var res = {'Date': new Date(date)};
+          events.push(res)
+        })
 
-      // $("#caleandar").click(function(){
-      // alert("You have selected X ")
-      // })
+        // $("#caleandar").click(function(){
+        // alert("You have selected X ")
+        // })
 
-      $(document).on("click","#caleandar",function(event){
-        alert(event.target.id);
-      });
+        $(document).on("click","#caleandar",function(event){
+          alert(event.target.id);
+        });
 
-      var settings = {
-        DateTimeShow: true,
-        EventTargetWholeDay: true,
+        var settings = {
+          DateTimeShow: true,
+          EventTargetWholeDay: true,
 
+        };
+        var element = document.getElementById(`caleandar_${property_ids[i]}`);
+        console.log("calendar")
+        caleandar(element, events, settings);
       };
-      var element = document.getElementById(`caleandar_${p_id}`);
-      console.log("calendar")
-      caleandar(element, events, settings);
-    };
-    setTimeout(initiateCalander, 150)
+      initiateCalander();
+      i ++;
+    })
+  };
 
-  });
+  setTimeout(uploadCalendars, 500)
+
 
 </script>
 </body>
