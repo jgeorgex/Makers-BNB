@@ -26,9 +26,9 @@ class Reservation
     r.map { |res| res['res_date']}
   end
 
-  def self.requests(propert_id:)
-    r = DatabaseConnection.query("SELECT * FROM makersbnb_reservations WHERE property_id=#{property_id} AND confirmed=TRUE;")
+  def self.requests(property_id:)
+    r = DatabaseConnection.query("SELECT * FROM makersbnb_reservations WHERE property_id=#{property_id} AND confirmed=FALSE;")
     r.map { |res| Reservation.new(id: res['id'].to_i, property_id: res['property_id'].to_i, user_id: res['user_id'].to_i, res_date: res['res_date'])}
-
   end
+
 end

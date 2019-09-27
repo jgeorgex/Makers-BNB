@@ -57,6 +57,7 @@ class MakersBNB < Sinatra::Base
   get '/user/:id/browse' do
     @id = params[:id]
     @properties = Property.all
+    p @properties
     erb :browse_properties
   end
 
@@ -74,6 +75,11 @@ class MakersBNB < Sinatra::Base
 
   get '/confirmation' do
     "your booking request has been sent"
+  end
+
+  get '/res/requests' do
+    p Reservation.requests(property_id: 1)
+    "testing"
   end
 
   run! if __FILE__ == $PROGRAM_NAME
