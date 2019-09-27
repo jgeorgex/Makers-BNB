@@ -2,10 +2,10 @@ require 'sinatra'
 require 'sinatra/base'
 require 'sinatra/json'
 require 'json'
-# require 'mail'
+require 'mail'
 require_relative './lib/mbnb_user'
 require_relative './lib/property'
-# require_relative './lib/send_mail'
+require_relative './lib/send_mail'
 require './lib/database_connection_setup'
 require './lib/reservation'
 
@@ -38,6 +38,7 @@ class MakersBNB < Sinatra::Base
 
   post '/user/new' do
     @user = MbnbUser.create(email: params[:email],username: params[:username], firstname: params[:firstname], surname: params[:lastname], password: params[:password])
+    SendMail.sign_up_mail(params[:email])
     redirect "/user/#{@user.id}"
   end
 
