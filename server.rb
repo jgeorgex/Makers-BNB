@@ -2,8 +2,8 @@ require 'sinatra'
 require 'sinatra/base'
 require 'sinatra/json'
 require 'json'
-require_relative './lib/mbnb_user'
-require_relative './lib/property'
+require './lib/mbnb_user'
+require './lib/property'
 require './lib/database_connection_setup'
 require './lib/reservation'
 
@@ -57,7 +57,10 @@ class MakersBNB < Sinatra::Base
   get '/user/:id/browse' do
     @id = params[:id]
     @properties = Property.all
-    p @properties
+    @reservations = []
+    @properties.each { |p| res = Reservation.requests(property_id: p.id)
+      @reservations << res}
+    p @reservations
     erb :browse_properties
   end
 

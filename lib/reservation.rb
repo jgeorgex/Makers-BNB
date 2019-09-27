@@ -2,13 +2,15 @@ require_relative './database_connection'
 
 class Reservation
 
-  attr_reader :id, :property_id, :user_id, :res_date
+  attr_reader :id, :property_id, :user_id, :res_date, :property, :guest
 
   def initialize(id:, property_id:, user_id:, res_date:)
     @id = id
-    @property_id = property_id
-    @user_id = user_id
+    # @property_id = property_id
+    # @user_id = user_id
     @res_date = res_date
+    @property = Property.find(property_id)
+    @guest = MbnbUser.find(user_id)
   end
 
   def self.create(property_id:, user_id:, res_date:)
