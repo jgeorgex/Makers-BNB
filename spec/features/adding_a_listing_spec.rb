@@ -1,7 +1,6 @@
 feature "managing listings" do
   scenario "adding a listing" do
     sign_up
-    p current_path
     click_on 'manage'
     expect(page).not_to have_content('test house')
     fill_in 'address', with: '123, address road'
@@ -12,4 +11,3 @@ feature "managing listings" do
     expect(page).to have_content('123, address road')
   end
 end
-

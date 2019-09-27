@@ -19,7 +19,6 @@ class MakersBNB < Sinatra::Base
     r = Reservation.all(property_id: params[:p_id])
     y = []
     r.each { |date| y.push(date.gsub('-', ', '))}
-    p y
     json(y)
   end
 
@@ -50,6 +49,9 @@ class MakersBNB < Sinatra::Base
   get '/user/:id/listings' do
     @user = MbnbUser.find(params[:id])
     @properties = Property.user_all(params[:id])
+    @reservations = []
+    @properties.each { |p| res = Reservation.requests(property_id: p.id)
+      @reservations << res}
     erb :manage_listings
   end
 
@@ -71,7 +73,23 @@ class MakersBNB < Sinatra::Base
   end
 
   post '/user/:id/request/:p_id' do
+    @date = "#{params[:year]}-#{params[:month]}-#{params[:day]}"
+    Reservation.create(property_id: params[:p_id], user_id: params[:id], res_date: @date)
+    redirect '/confirmation'
+  end
 
+  get '/confirmation' do
+    "your booking request has been sent"
+  end
+
+  post '/user/:u_id/res/:r_id/deny' do
+    Reservation.deny(params[:r_id])
+    redirect "/user/#{params[:u_id]}/listings"
+  end
+
+  post '/user/:u_id/res/:r_id/confirm' do
+    Reservation.confirm(params[:r_id])
+    redirect "/user/#{params[:u_id]}/listings"
   end
 
   run! if __FILE__ == $PROGRAM_NAME
